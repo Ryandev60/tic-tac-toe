@@ -133,34 +133,32 @@ function robotDefense() {
             let val3 = stateGame[victoryCondition[2]];
 
             if (stateGame[4] === player && stateGame[8] === "") {
-              update(undefined, 8, false, robot);
-              console.log("Defense 4");
-              break;
+               update(undefined, 8, false, robot);
+               console.log("Defense 4");
+               break;
             } else if (
-              (stateGame[4] === "" && stateGame[0] === player) ||
-              (stateGame[4] === "" && stateGame[2] === player) ||
-              (stateGame[4] === "" && stateGame[6] === player) ||
-              (stateGame[4] === "" && stateGame[8] === player)
+               (stateGame[4] === "" && stateGame[0] === player) ||
+               (stateGame[4] === "" && stateGame[2] === player) ||
+               (stateGame[4] === "" && stateGame[6] === player) ||
+               (stateGame[4] === "" && stateGame[8] === player)
             ) {
-              update(undefined, 4, false, robot);
-              console.log("Defense 5");
-              break;
-            } else if (stateGame[0] === "") {
-              update(undefined, 0, true, robot);
-              break;
-            } else if (stateGame[2] === "") {
-              update(undefined, 2, true, robot);
-              break;
-            } else if (stateGame[6] === "") {
-              update(undefined, 6, true, robot);
-              break;
-            } else if (stateGame[8] === "") {
-              update(undefined, 8, true, robot);
-              break;
+               update(undefined, 4, false, robot);
+               console.log("Defense 5");
+               break;
+            } else if (
+               (stateGame[0] === "X" && stateGame[8] === "X" && stateGame[7] === "") ||
+               (stateGame[2] === "X" && stateGame[6] === "X" && stateGame[7] === "")
+            ) {
+               update(undefined, 7, true, robot);
+               break;
+            } else if (stateGame[0] === "X" && stateGame[4] === "X" && stateGame[6] === "") {
+               console.log("Defense 7");
+               update(undefined, 6, true, robot);
+               break;
             } else if (val2 === player && val1 === "") {
-              console.log("Defense 7");
-              update(undefined, 2, true, robot);
-              break;
+               console.log("Defense 8");
+               update(victoryCondition, 0, true, robot);
+               break;
             }
          }
       }
@@ -168,11 +166,11 @@ function robotDefense() {
       if (turn2 === victoryConditions.length) {
          if (stateGame[0] === "X" && stateGame[8] === "X" && stateGame[7] === "") {
             update(undefined, 7, false, robot);
-            console.log("Defense 8");
+            console.log("Defense 9");
             break;
          } else if (stateGame[2] === "X" && stateGame[6] === "X" && stateGame[7] === "") {
             update(undefined, 7, false, robot);
-            console.log("Defense 9");
+            console.log("Defense 10");
             break;
          }
       }

@@ -219,3 +219,32 @@ if (stateGame[4] === player && stateGame[8] === "") {
   update(undefined, 2, true, robot);
   break;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+else if (stateGame[2] === "") {
+  update(undefined, 2, true, robot);
+  console.log("Defense 8");
+  break;
+} else if (stateGame[6] === "") {
+  update(undefined, 6, true, robot);
+  console.log("Defense 9");
+
+  break;
+} else if (stateGame[8] === "") {
+  update(undefined, 8, true, robot);
+  break;
+} else if (val2 === player && val1 === "") {
+  console.log("Defense 10");
+  update(undefined, 2, true, robot);
+  break;
+}
