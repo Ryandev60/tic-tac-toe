@@ -205,8 +205,8 @@ if (stateGame[4] === player && stateGame[8] === "") {
 } else if (stateGame[0] === "") {
   update(undefined, 0, true, robot);
   break;
-} else if (stateGame[3] === "") {
-  update(undefined, 3, true, robot);
+} else if (stateGame[2] === "") {
+  update(undefined, 2, true, robot);
   break;
 } else if (stateGame[6] === "") {
   update(undefined, 6, true, robot);
