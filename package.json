@@ -1,0 +1,8 @@
+{
+  "name": "tic_tac_toe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Ryandev60/tic-tac-toe",
+  "author": "Ryan Thibaux",
+  "license": "MIT"
+}
