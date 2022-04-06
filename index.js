@@ -4,12 +4,23 @@ const $ = (tag, isAll) => {
 };
 const cases = $(".case", true);
 const statusHtml = $("h2", false);
+const playerScore = $(".score_player");
+const equalityScore = $(".score_equality");
+const robotScore = $(".score_robot");
 
 // Utile info
 statusHtml.textContent = "Good luck !";
 let activeGame = true;
 let player = "X";
 let robot = "O";
+
+let playerPoints = 0;
+let equalityPoints = 0;
+let robotPoints = 0;
+
+playerScore.innerHTML = `Vous : ${playerPoints}`;
+equalityScore.innerHTML = `Egalité : ${equalityPoints}`;
+robotScore.innerHTML = `Robot : ${robotPoints}`;
 
 const equality = () => "Egalité";
 
@@ -50,7 +61,13 @@ function caseClic() {
    robotAttack(victoryConditions, stateGame, robot, robotDefense);
 }
 
-// Robot
+/**
+ *
+ * @param {Array} victoryConditions
+ * @param {Array.<String>} stateGame
+ * @param {String} robot
+ * @param {Function} robotDefense
+ */
 function robotAttack(victoryConditions, stateGame, robot, robotDefense) {
    let turn = 0;
    let val1 = undefined;
@@ -65,12 +82,15 @@ function robotAttack(victoryConditions, stateGame, robot, robotDefense) {
 
       if (val1 === "" && val2 === robot && val3 === robot) {
          update(victoryCondition, 0, true, robot);
+         console.log("Attack 1");
          break;
       } else if (val1 === robot && val2 === "" && val3 === robot) {
          update(victoryCondition, 1, true, robot);
+         console.log("Attack 2");
          break;
       } else if (val1 === robot && val2 === robot && val3 === "") {
          update(victoryCondition, 2, true, robot);
+         console.log("Attack 3");
          break;
       } else if (turn === 8) {
          robotDefense();
@@ -89,16 +109,16 @@ function robotDefense() {
 
       if (val1 === "" && val2 === player && val3 === player) {
          update(victoryCondition, 0, true, robot);
-         console.log("1");
+         console.log("Defense 1");
          break;
       } else if (val1 === player && val2 === "" && val3 === player) {
-         console.log("2");
+         console.log("Defense 2");
 
          update(victoryCondition, 1, true, robot);
 
          break;
       } else if (val1 === player && val2 === player && val3 === "") {
-         console.log("3");
+         console.log("Defense 3");
 
          update(victoryCondition, 2, true, robot);
          break;
@@ -116,7 +136,7 @@ function robotDefense() {
 
             if (stateGame[4] === player && stateGame[2] === "") {
                update(undefined, 2, false, robot);
-               console.log("4");
+               console.log("Defense 4");
 
                break;
             } else if (
@@ -126,8 +146,7 @@ function robotDefense() {
                (stateGame[4] === "" && stateGame[8] === player)
             ) {
                update(undefined, 4, false, robot);
-               console.log("5");
-
+               console.log("Defense 5");
                break;
             } else if (
                stateGame[4] === player &&
@@ -135,23 +154,18 @@ function robotDefense() {
                stateGame[8] === ""
             ) {
                update(undefined, 8, false, robot);
-               console.log("6");
-
+               console.log("Defense 6");
                break;
             } else if (val1 === player && val2 === "") {
                update(victoryCondition, 1, true, robot);
-               console.log("7");
-
+               console.log("Defense 7");
                break;
             } else if (val2 === player && val3 === "") {
-               console.log("8");
-
+               console.log("Defense 8");
                update(victoryCondition, 2, true, robot);
-
                break;
             } else if (val3 === player && val2 === "") {
-               console.log("9");
-
+               console.log("Defense 9");
                update(victoryCondition, 1, true, robot);
                break;
             }
@@ -192,13 +206,17 @@ function checkWin() {
          continue;
       }
       if (val1 === player && val2 === player && val3 === player) {
-         winTurn = true;
          statusHtml.textContent = "Le player X à gagné";
+         playerPoints++;
+         robotScore.innerHTML = `Vous : ${playerPoints}`;
+         winTurn = true;
          break;
       }
 
       if (val1 === robot && val2 === robot && val3 === robot) {
          statusHtml.textContent = "Le player O à gagné";
+         robotPoints++;
+         robotScore.innerHTML = `Robot : ${robotPoints}`;
          winTurn = true;
          break;
       }
@@ -211,6 +229,8 @@ function checkWin() {
 
    if (!stateGame.includes("")) {
       statusHtml.textContent = equality();
+      equalityPoints++;
+      equalityScore.innerHTML = `Egalité : ${equalityPoints}`;
       activeGame = false;
       return;
    }
@@ -223,5 +243,3 @@ function tryAgain() {
    statusHtml.textContent = "Good luck !";
    cases.forEach((cell) => (cell.textContent = ""));
 }
-
-cases.forEach((cell) => (cell.value === "X" ? (cell.color = "blue") : (cell.color = "red")));
