@@ -145,20 +145,28 @@ function robotDefense() {
                update(undefined, 4, false, robot);
                console.log("Defense 5");
                break;
-            } else if (
-               stateGame[4] === player &&
-               stateGame[6] === player &&
-               stateGame[8] === ""
-            ) {
-               update(undefined, 8, false, robot);
-               console.log("Defense 6");
-               break;
             } else if (val2 === player && val3 === "") {
+               console.log("Defense 6");
+               update(victoryCondition, 2, true, robot);
+               break;
+            } else if (val2 === player && val1 === "") {
                console.log("Defense 7");
                update(victoryCondition, 2, true, robot);
                break;
             }
          }
+      }
+
+      if (turn2 === victoryConditions.length) {
+         if (stateGame[0] === "X" && stateGame[8] === "X" && stateGame[7] === "") {
+            update(undefined, 7, false, robot);
+            console.log("Defense 8");
+            break;
+         } else if (stateGame[2] === "X" && stateGame[6] === "X" && stateGame[7] === "") {
+            update(undefined, 7, false, robot);
+            console.log("Defense 9");
+            break;
+         } 
       }
    }
 }

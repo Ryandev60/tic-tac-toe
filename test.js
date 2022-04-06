@@ -149,3 +149,13 @@ else if (val1 === player && val2 === "") {
   console.log("Defense 7");
   break;
 }
+
+else if (
+  stateGame[4] === player &&
+  stateGame[6] === player &&
+  stateGame[8] === ""
+) {
+  update(undefined, 8, false, robot);
+  console.log("Defense 6");
+  break;
+}
