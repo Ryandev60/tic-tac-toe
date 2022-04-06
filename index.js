@@ -132,8 +132,8 @@ function robotDefense() {
             let val2 = stateGame[victoryCondition[1]];
             let val3 = stateGame[victoryCondition[2]];
 
-            if (stateGame[4] === player && stateGame[2] === "") {
-               update(undefined, 2, false, robot);
+            if (stateGame[4] === player && stateGame[8] === "") {
+               update(undefined, 8, false, robot);
                console.log("Defense 4");
                break;
             } else if (
@@ -145,13 +145,21 @@ function robotDefense() {
                update(undefined, 4, false, robot);
                console.log("Defense 5");
                break;
-            } else if (val2 === player && val3 === "") {
-               console.log("Defense 6");
-               update(victoryCondition, 2, true, robot);
+            } else if (stateGame[0] === "") {
+               update(undefined, 0, true, robot);
+               break;
+            } else if (stateGame[2] === "") {
+               update(undefined, 2, true, robot);
+               break;
+            } else if (stateGame[6] === "") {
+               update(undefined, 6, true, robot);
+               break;
+            } else if (stateGame[8] === "") {
+               update(undefined, 8, true, robot);
                break;
             } else if (val2 === player && val1 === "") {
                console.log("Defense 7");
-               update(victoryCondition, 2, true, robot);
+               update(undefined, 2, true, robot);
                break;
             }
          }
@@ -166,7 +174,7 @@ function robotDefense() {
             update(undefined, 7, false, robot);
             console.log("Defense 9");
             break;
-         } 
+         }
       }
    }
 }
