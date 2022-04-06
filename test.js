@@ -141,3 +141,11 @@ if (turn === 8) {
     checkWin();
   }
 }
+
+
+
+else if (val1 === player && val2 === "") {
+  update(victoryCondition, 1, true, robot);
+  console.log("Defense 7");
+  break;
+}

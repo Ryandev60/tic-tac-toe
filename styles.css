@@ -1,3 +1,10 @@
+* {
+   font-family: "Roboto", sans-serif;
+   font-weight: 300;
+   color: #fff;
+   outline: 0;
+}
+
 body {
    text-align: center;
    background-color: #000;
@@ -6,7 +13,6 @@ body {
    align-items: center;
    height: 95vh;
 }
-
 
 #board {
    display: grid;
@@ -24,23 +30,17 @@ body {
    cursor: pointer;
 }
 
-* {
-   font-family: "Roboto", sans-serif;
-   font-weight: 300;
-   color: #fff;
-}
-
 h2 {
    font-style: italic;
 }
 
 .score {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style-type: none;
-  width: 300px;
-  padding: 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   list-style-type: none;
+   width: 300px;
+   padding: 0;
 }
 
 #tryagain {

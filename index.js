@@ -108,25 +108,23 @@ function robotDefense() {
       let val3 = stateGame[victoryCondition[2]];
 
       if (val1 === "" && val2 === player && val3 === player) {
-         update(victoryCondition, 0, true, robot);
+         update(victoryCondition, 0, false, robot);
          console.log("Defense 1");
          break;
       } else if (val1 === player && val2 === "" && val3 === player) {
          console.log("Defense 2");
-
-         update(victoryCondition, 1, true, robot);
-
+         update(victoryCondition, 1, false, robot);
          break;
       } else if (val1 === player && val2 === player && val3 === "") {
          console.log("Defense 3");
-
-         update(victoryCondition, 2, true, robot);
+         update(victoryCondition, 2, false, robot);
          break;
       }
 
       let turn2 = 0;
 
       if (turn === victoryConditions.length) {
+         console.log(turn);
          for (let victoryCondition of victoryConditions) {
             turn2++;
 
@@ -137,7 +135,6 @@ function robotDefense() {
             if (stateGame[4] === player && stateGame[2] === "") {
                update(undefined, 2, false, robot);
                console.log("Defense 4");
-
                break;
             } else if (
                (stateGame[4] === "" && stateGame[0] === player) ||
@@ -156,17 +153,9 @@ function robotDefense() {
                update(undefined, 8, false, robot);
                console.log("Defense 6");
                break;
-            } else if (val1 === player && val2 === "") {
-               update(victoryCondition, 1, true, robot);
-               console.log("Defense 7");
-               break;
             } else if (val2 === player && val3 === "") {
-               console.log("Defense 8");
+               console.log("Defense 7");
                update(victoryCondition, 2, true, robot);
-               break;
-            } else if (val3 === player && val2 === "") {
-               console.log("Defense 9");
-               update(victoryCondition, 1, true, robot);
                break;
             }
          }
@@ -208,7 +197,7 @@ function checkWin() {
       if (val1 === player && val2 === player && val3 === player) {
          statusHtml.textContent = "Le player X à gagné";
          playerPoints++;
-         robotScore.innerHTML = `Vous : ${playerPoints}`;
+         playerScore.innerHTML = `Vous : ${playerPoints}`;
          winTurn = true;
          break;
       }
