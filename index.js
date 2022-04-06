@@ -18,11 +18,11 @@ let playerPoints = 0;
 let equalityPoints = 0;
 let robotPoints = 0;
 
-playerScore.innerHTML = `Vous : ${playerPoints}`;
-equalityScore.innerHTML = `Egalité : ${equalityPoints}`;
+playerScore.innerHTML = `You : ${playerPoints}`;
+equalityScore.innerHTML = `Equality : ${equalityPoints}`;
 robotScore.innerHTML = `Robot : ${robotPoints}`;
 
-const equality = () => "Egalité";
+const equality = "Equality";
 
 // Board
 const createStateGame = () => {
@@ -58,7 +58,7 @@ function caseClic() {
    this.textContent = player;
    this.style.color = "#77B5FE";
    checkWin();
-   robotAttack(victoryConditions, stateGame, robot, robotDefense);
+   activeGame ? robotAttack(victoryConditions, stateGame, robot, robotDefense) : null;
 }
 
 /**
@@ -167,11 +167,24 @@ function robotDefense() {
          if (stateGame[0] === "X" && stateGame[8] === "X" && stateGame[7] === "") {
             update(undefined, 7, false, robot);
             console.log("Defense 9");
-            break;
          } else if (stateGame[2] === "X" && stateGame[6] === "X" && stateGame[7] === "") {
             update(undefined, 7, false, robot);
             console.log("Defense 10");
-            break;
+         } else {
+            const emptyCase = [];
+            // Index de la case vide
+            var idx = stateGame.indexOf("");
+            // Tant que le tableau n'est pas parcouru entiérement on cherche si il y à des cases vides
+            while (idx != -1) {
+               // On pousse l'index de la case vide dans le tableau
+               emptyCase.push(idx);
+               // On incrémente idx de 1 pour que vérifier l'index suivant
+               idx = stateGame.indexOf("", idx + 1);
+            }
+            const random = Math.floor(Math.random() * emptyCase.length);
+            const randomValue = emptyCase[random];
+            update(undefined, randomValue, false, robot);
+            console.log("Random");
          }
       }
    }
@@ -209,15 +222,15 @@ function checkWin() {
          continue;
       }
       if (val1 === player && val2 === player && val3 === player) {
-         statusHtml.textContent = "Le player X à gagné";
+         statusHtml.textContent = "You win !";
          playerPoints++;
-         playerScore.innerHTML = `Vous : ${playerPoints}`;
+         playerScore.innerHTML = `You : ${playerPoints}`;
          winTurn = true;
          break;
       }
 
       if (val1 === robot && val2 === robot && val3 === robot) {
-         statusHtml.textContent = "Le player O à gagné";
+         statusHtml.textContent = "Robot win !";
          robotPoints++;
          robotScore.innerHTML = `Robot : ${robotPoints}`;
          winTurn = true;
@@ -231,9 +244,9 @@ function checkWin() {
    }
 
    if (!stateGame.includes("")) {
-      statusHtml.textContent = equality();
+      statusHtml.textContent = equality;
       equalityPoints++;
-      equalityScore.innerHTML = `Egalité : ${equalityPoints}`;
+      equalityScore.innerHTML = `Equality : ${equalityPoints}`;
       activeGame = false;
       return;
    }
