@@ -150,6 +150,7 @@ function robotDefense() {
                (stateGame[2] === "X" && stateGame[6] === "X" && stateGame[7] === "")
             ) {
                update(undefined, 7, true, robot);
+               console.log("Defense 6");
                break;
             } else if (stateGame[0] === "X" && stateGame[4] === "X" && stateGame[6] === "") {
                console.log("Defense 7");
